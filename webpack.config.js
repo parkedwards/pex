@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: ["./src/dashboard/index.jsx"],
+  entry: ["./src/index.jsx"],
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/",
