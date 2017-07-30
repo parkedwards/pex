@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/parkedwards/pex#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-eslint": "^7.2.3",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
