@@ -7,7 +7,7 @@
     "start": "node server/index.js --harmony",
     "devstart": "NODE_ENV=dev nodemon server/index.js --harmony",
     "dev": "webpack-dev-server --inline --hot",
-    "build": "webpack -p",
+    "build": "webpack -pw",
     "test": "jest --config ./jest.conf.json"
   },
   "repository": {
@@ -27,6 +27,8 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "jwt-decode": "^2.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
