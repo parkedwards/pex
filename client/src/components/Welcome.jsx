@@ -4,14 +4,14 @@ import { style } from '../utils';
 
 const { flex, media } = style;
 
-const Welcome = () => (
+const Welcome = ({ requestLogin }) => (
   <Wrapper>
     <Logo className="fa fa-angle-double-up" />
     <Title>P E X</Title>
-    <Tagline>if you stay ready, you ain't gotta get ready</Tagline>
+    <Tagline>stay ready, so you ain't gotta get ready</Tagline>
     <ButtonWrapper>
-      <PillButton invert>register</PillButton>
-      <PillButton>login</PillButton>
+      <PillButton>register</PillButton>
+      <PillButton invert onClick={requestLogin}>login</PillButton>
     </ButtonWrapper>
   </Wrapper>
 );
@@ -69,18 +69,21 @@ const Tagline = styled.div`
 
 const ButtonWrapper = styled.div`
   ${flex('row', 'space-around', 'center')}
-  width: 70%;
+  width: 80%;
   margin: 0.5em 0;
   animation: 1s ${delayFade} linear;
 `;
 
 const PillButton = styled.button`
   outline: none;
-  border-radius: 20px;
-  font-size: 0.2em;
-  padding: 0.2em 0.7em;
+  font-weight: 200;
   cursor: pointer;
   border: 2px solid white;
   background-color: ${props => (props.invert ? 'white' : 'transparent')};
   color: ${props => (props.invert ? props.theme['bg-color'] : 'white')};
+
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 0.2em 0.7em;
+  width: 6em;
 `;
