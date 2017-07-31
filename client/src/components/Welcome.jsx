@@ -1,20 +1,85 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { style } from '../utils';
 
 const { flex, media } = style;
 
-const Welcome = ({ requestLogin }) => (
-  <Wrapper>
-    <Logo className="fa fa-angle-double-up" />
-    <Title>P E X</Title>
-    <Tagline>stay ready, so you ain't gotta get ready</Tagline>
-    <ButtonWrapper>
-      <PillButton>register</PillButton>
-      <PillButton invert onClick={requestLogin}>login</PillButton>
-    </ButtonWrapper>
-  </Wrapper>
-);
+class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'main',
+      email: '',
+      password: '',
+    };
+
+    this.updateView = this.updateView.bind(this);
+    this.updateField = this.updateField.bind(this);
+  }
+
+  updateView(view) {
+    this.setState({
+      ...this.state,
+      email: '',
+      password: '',
+      view,
+    });
+  }
+
+  updateField(e) {
+    const field = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      ...this.state,
+      [field]: value,
+    });
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Logo className="fa fa-angle-double-up" />
+        <Title>P E X</Title>
+        <Tagline>stay ready, so you ain't gotta get ready</Tagline>
+        {this.state.view === 'main' &&
+          <ButtonWrapper>
+            <PillButton onClick={() => this.updateView('register')}>
+              register
+            </PillButton>
+            <PillButton invert onClick={() => this.updateView('login')}>
+              login
+            </PillButton>
+          </ButtonWrapper>}
+        {this.state.view === 'login' &&
+          <div>
+            <input
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.updateField}
+            />
+            <input
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.updateField}
+            />
+            <PillButton
+              invert
+              onClick={() =>
+                this.props.requestLogin({
+                  email: this.state.email,
+                  password: this.state.password,
+                })}
+            >
+              login
+            </PillButton>
+          </div>}
+      </Wrapper>
+    );
+  }
+}
 
 export default Welcome;
 
