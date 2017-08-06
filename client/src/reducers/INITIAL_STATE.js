@@ -1,7 +1,12 @@
 module.exports = {
   auth: {
     isAuthenticated: false,
-    user: {},
+    user: {
+      userId: null,
+      email: '',
+      firstName: '',
+      lastName: '',
+    },
   },
   ui: {
     selected: 'log',
