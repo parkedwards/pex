@@ -66,6 +66,7 @@ const fadeInFromTop = keyframes`
 
 const Wrapper = styled.div`
   font-size: 1.5em;
+  ${flex('column', 'center', 'center')}
 `;
 
 const Greeting = styled.div`
