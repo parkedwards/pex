@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { style } from '../utils';
 
-import { login, fetchUser } from '../actions/auth';
+import { login, fetchUserDetails } from '../actions/auth';
 import { Welcome, Main } from '../components';
 
 const { flex, media } = style;
@@ -32,11 +33,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestLogin: creds => dispatch(login(creds)),
-  requestUser: userId => dispatch(fetchUser(userId)),
+  requestUser: userId => dispatch(fetchUserDetails(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
+// {{   Styling  }}
 const Wrapper = styled.div`
   ${flex('column', 'center', 'center')}
   background-color: ${props => props.theme['bg-color']};
@@ -49,3 +51,16 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+// {{   Proptype Checking   }}
+App.propTypes = {
+  isAuthenticated: Proptypes.bool.isRequired,
+  requestLogin: Proptypes.func.isRequired,
+  requestUser: Proptypes.func.isRequired,
+  user: Proptypes.shape({
+    userId: Proptypes.oneOf([Proptypes.number], null),
+    email: Proptypes.string,
+    firstName: Proptypes.string,
+    lastName: Proptypes.string,
+  }).isRequired,
+};

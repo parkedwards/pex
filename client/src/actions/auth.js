@@ -8,6 +8,7 @@ import {
   USER_DETAIL_REQUEST,
   USER_DETAIL_RECEIVE,
   USER_DETAIL_ERROR,
+  CLEAR_CURRENT_USER,
 } from './';
 
 export const setCurrentUser = user => ({
@@ -40,7 +41,7 @@ export const updateUserDetails = details => ({
   details,
 });
 
-export const fetchUser = userId => dispatch => {
+export const fetchUserDetails = userId => dispatch => {
   dispatch({ type: USER_DETAIL_REQUEST });
   return $.post('/api/user', { userId })
     .then(res => {
@@ -49,5 +50,10 @@ export const fetchUser = userId => dispatch => {
     .catch(err => {
       console.error(err);
       dispatch({ type: USER_DETAIL_ERROR });
+      dispatch(clearCurrentUser());
     });
 };
+
+export const clearCurrentUser = () => ({
+  type: CLEAR_CURRENT_USER,
+});
