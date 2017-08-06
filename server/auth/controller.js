@@ -51,6 +51,7 @@ module.exports = {
             email: user.rows[0].email,
           },
           process.env.JWT_SECRET,
+          { expiresIn: '7d' },
           (error, token) => {
             if (error) {
               return res
