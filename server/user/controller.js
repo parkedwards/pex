@@ -1,7 +1,7 @@
 const db = require('./model');
 
 module.exports = {
-  fetchUser: (req, res) => {
+  fetchUserDetails: (req, res) => {
     db.query(
       'select * from users where userid=$1 limit 1',
       [req.body.userId],
