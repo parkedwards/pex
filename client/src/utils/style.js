@@ -1,7 +1,7 @@
 // maybe some helper functions with commonly outputted CSS selector / values
 import { css } from 'styled-components';
 
-export const flex = (direction = 'row', main, secondary) => css`
+const flex = (direction = 'row', main, secondary) => css`
   display: flex;
   flex-direction: ${direction};
   ${main && `justify-content: ${main};`}
@@ -13,7 +13,7 @@ const sizes = {
   mobile: 650,
 };
 
-export const media = Object.keys(sizes).reduce((accum, label) => {
+const media = Object.keys(sizes).reduce((accum, label) => {
   const emSize = sizes[label] / 16;
   accum[label] = (...args) => css`
     @media (max-width: ${emSize}em) {
@@ -31,7 +31,16 @@ export const media = Object.keys(sizes).reduce((accum, label) => {
 //   ${media.phone`padding: 0 5px;`}
 // `
 
+const cross_browser = (property, value) => css`
+    -webkit-${property}: ${value};
+    -moz-${property}: ${value};
+    -ms-${property}: ${value};
+    -o-${property}: ${value};
+    ${property}: ${value};
+  `;
+
 export default {
   flex,
   media,
+  cross_browser,
 };

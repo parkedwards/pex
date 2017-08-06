@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import jwt_decode from 'jwt-decode';
-import { setCurrentUser } from '../actions/auth';
-import { setAuthToken } from '../utils';
-
+import { setCurrentUser, clearCurrentUser } from '../actions/auth';
+import { setAuthToken, cache } from './';
 import { ui, auth } from '../reducers';
+
+const { loadState, clearState } = cache;
 
 const configureStore = () => {
   const rootReducer = combineReducers({
@@ -21,9 +22,14 @@ const configureStore = () => {
   );
 
   if (localStorage['user-token']) {
-    const user = jwt_decode(localStorage.getItem('user-token'));
-    setAuthToken(localStorage['user-token']);
-    store.dispatch(setCurrentUser(user));
+    // not using cache methods for jwt, since JSON.parse is fucking up when it's given a string
+    const jwt = localStorage.getItem('user-token');
+
+    const { userId, email } = jwt_decode(jwt);
+    setAuthToken(jwt);
+    store.dispatch(setCurrentUser({ userId, email }));
+  } else {
+    store.dispatch(clearCurrentUser());
   }
 
   return store;
