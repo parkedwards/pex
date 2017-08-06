@@ -47,7 +47,7 @@ module.exports = {
 
         jwt.sign(
           {
-            userId: user.rows[0]._id,
+            userId: user.rows[0].userid,
             email: user.rows[0].email,
           },
           process.env.JWT_SECRET,

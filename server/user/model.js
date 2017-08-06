@@ -3,7 +3,7 @@ const db = require('../database');
 db.query(
   `create table if not exists "users" (
   _id serial primary key,
-  userId integer unique not null,
+  userId varchar(256) unique not null,
   email varchar(256) unique not null,
   first_name varchar(256) not null,
   last_name varchar(256) not null
