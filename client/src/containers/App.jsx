@@ -58,9 +58,9 @@ App.propTypes = {
   requestLogin: Proptypes.func.isRequired,
   requestUser: Proptypes.func.isRequired,
   user: Proptypes.shape({
-    userId: Proptypes.oneOf([Proptypes.number], null),
-    email: Proptypes.string,
-    firstName: Proptypes.string,
-    lastName: Proptypes.string,
+    userId: Proptypes.oneOf([Proptypes.number], null).isRequired,
+    email: Proptypes.string.isRequired,
+    first_name: Proptypes.string.isRequired,
+    last_name: Proptypes.string.isRequired,
   }).isRequired,
 };

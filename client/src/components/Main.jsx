@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { style, constants } from '../utils';
 
@@ -51,6 +52,7 @@ class Main extends Component {
 
 export default Main;
 
+// {{   Styling   }}
 const fadeInFromTop = keyframes`
   0% {
     opacity: 0;
@@ -73,3 +75,14 @@ const Greeting = styled.div`
 const Emphasis = styled.span`
   font-weight: 500;
 `;
+
+// {{   Proptype Checking   }}
+Main.propTypes = {
+  requestUser: Proptypes.func.isRequired,
+  user: Proptypes.shape({
+    userId: Proptypes.oneOf([Proptypes.number], null).isRequired,
+    email: Proptypes.string.isRequired,
+    first_name: Proptypes.string.isRequired,
+    last_name: Proptypes.string.isRequired,
+  }).isRequired,
+};
