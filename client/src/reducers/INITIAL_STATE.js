@@ -4,8 +4,8 @@ module.exports = {
     user: {
       userId: null,
       email: '',
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
     },
   },
   ui: {
