@@ -11,7 +11,10 @@ const auth = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: true, // tutorial is saying check if object is empty
-        user: action.user,
+        user: {
+          ...state.user,
+          ...action.user,
+        },
       };
     case USER_DETAIL_RECEIVE:
       return {
